@@ -1,7 +1,7 @@
 # Prompt Collection
 
 This document contains the prompt templates used in our ReDI framework for **query decomposition** and **interpretation**.  
-They are grouped into three categories: **Decomposition**, **Sparse Description**, and **Dense Description**.
+They are grouped into three categories: **Decomposition**, **Sparse Interpretation**, and **Dense Interpretation**.
 
 ---
 
@@ -40,8 +40,8 @@ Query: {query}
 
 Used to generate **interpretations** for sub-queries in **sparse retrieval (BM25)**.
 
-DESCRIPTION_PROMPT_sparse = """
-For each Sub-Query, identify its essential information need and generate a concise yet enriched description to better support retrieval. Your description should be guided by the following steps:
+INTERPRETATION_PROMPT_sparse = """
+For each Sub-Query, identify its essential information need and generate a concise yet enriched interpretation to better support retrieval. Your interpretation should be guided by the following steps:
 1. **Clarify the core intent**: Identify the key concept or problem the sub-query addresses.
 2. **Expand semantically and lexically**: Include the singular and plural forms of core terms. Add common derivations (e.g., "-ing", "-ion", "-ed", etc.). Incorporate 3–5 close synonyms or near-synonyms to improve coverage. Consider relevant domain-specific jargon or frequent phrase variants that are likely to appear in relevant documents.
 3. **Think step by step**: Reason thoroughly about what supporting information, alternative expressions, or formulations would help capture relevant content from the corpus.
@@ -52,19 +52,19 @@ Sub-queries:
 
 ### Output Format:
 
-Desc1: "<|begin_of_desc|>Concise description of Sub_Query_1.<|end_of_desc|>"
-Desc2: "<|begin_of_desc|>Concise description of Sub_Query_2.<|end_of_desc|>"
+Interp1: "<|begin_of_interp|>Concise interpretation of Sub_Query_1.<|end_of_interp|>"
+Interp2: "<|begin_of_interp|>Concise interpretation of Sub_Query_2.<|end_of_interp|>"
 ...
-Descn: "<|begin_of_desc|>Concise description of Sub_Query_n.<|end_of_desc|>"
+Interpn: "<|begin_of_interp|>Concise interpretation of Sub_Query_n.<|end_of_interp|>"
 
-Now, generate descriptions for each provided sub-query accordingly.
+Now, generate interpretations for each provided sub-query accordingly.
 """
 
 ## 3. Dense Interpretation Prompt
 
 Used to generate **interpretations** for sub-queries in **dense retrieval (SBERT)**.
 
-DESCRIPTION_PROMPT = """
+INTERPRETATION_PROMPT = """
 Instructions:
 For each Sub-Query, write a context-rich paraphrase of ~20–30 words that:
 1. Restates the query in natural language,
@@ -77,11 +77,11 @@ Sub-queries:
 
 ### Output Format:
 
-Desc1: "<begin_of_desc>Concise description of Sub_Query_1.<end_of_desc>"
-Desc2: "<begin_of_desc>Concise description of Sub_Query_2.<end_of_desc>"
+Interp1: "<begin_of_interp>Concise interpretation of Sub_Query_1.<end_of_interp>"
+Interp2: "<begin_of_interp>Concise interpretation of Sub_Query_2.<end_of_interp>"
 ...
-Descn: "<begin_of_desc>Concise description of Sub_Query_n.<end_of_desc>"
+Interpn: "<begin_of_interp>Concise interpretation of Sub_Query_n.<end_of_interp>"
 
-Now, generate descriptions for each provided sub-query accordingly.
+Now, generate interpretations for each provided sub-query accordingly.
 """
 
